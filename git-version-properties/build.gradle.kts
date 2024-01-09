@@ -1,9 +1,11 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     `java-gradle-plugin`
     kotlin("jvm") version "1.9.22"
-    `maven-publish`
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradle.plugin-publish") version "1.2.1"
 }
-
 
 group = "de.macnix.gradle"
 version = "1.0.0"
@@ -21,17 +23,22 @@ gradlePlugin {
     val gitVersion by plugins.creating {
         id = "de.macnix.gradle.git-version-properties"
         implementationClass = "de.macnix.gradle.gitversion.GitVersionPropertiesPlugin"
+        displayName = "Git-Version-Properties Gradle Plugin"
+        description = "A plugin providing automatic versioning of CI/CD builds based on git tags and build info"
+
+        vcsUrl = "https://github.com/hbrackel/gradle-plugins"
+        website = "https://github.com/hbrackel/gradle-plugins"
+
+        tags = listOf("git", "versioning", "cicd", "plugins")
     }
 }
 
-// Add a source set for the functional test suite
 val functionalTestSourceSet = sourceSets.create("functionalTest") {
 }
 
 configurations["functionalTestImplementation"].extendsFrom(configurations["testImplementation"])
 configurations["functionalTestRuntimeOnly"].extendsFrom(configurations["testRuntimeOnly"])
 
-// Add a task to run the functional tests
 val functionalTest by tasks.registering(Test::class) {
     testClassesDirs = functionalTestSourceSet.output.classesDirs
     classpath = functionalTestSourceSet.runtimeClasspath
@@ -41,20 +48,22 @@ val functionalTest by tasks.registering(Test::class) {
 gradlePlugin.testSourceSets.add(functionalTestSourceSet)
 
 tasks.named<Task>("check") {
-    // Run the functional tests as part of `check`
     dependsOn(functionalTest)
 }
 
 tasks.named<Test>("test") {
-    // Use JUnit Jupiter for unit tests.
     useJUnitPlatform()
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "localPluginRepository"
-            url = uri("../local-plugin-repository")
-        }
-    }
+tasks.withType<ShadowJar> {
+    archiveClassifier.set("")
 }
+
+//publishing {
+//    repositories {
+//        maven {
+//            name = "localPluginRepository"
+//            url = uri("../local-plugin-repository")
+//        }
+//    }
+//}
