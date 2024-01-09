@@ -59,11 +59,11 @@ tasks.withType<ShadowJar> {
     archiveClassifier.set("")
 }
 
-//publishing {
-//    repositories {
-//        maven {
-//            name = "localPluginRepository"
-//            url = uri("../local-plugin-repository")
-//        }
-//    }
-//}
+publishing {
+    repositories {
+        maven {
+            name = "localPluginRepository"
+            url = uri("../local-plugin-repository")
+        }
+    }
+}
