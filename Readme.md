@@ -44,7 +44,7 @@ component.
 `PATCH` is calculated from the number of commits since the last tag.
 The priciples of semantic versioning are fulfilled when tags for formatted using number like `2.3`.
 
-If no tag can be found, `MAJOR.MINOR.PATCH` default to `0.0.0`
+If no tag can be found, `MAJOR.MINOR.PATCH` defaults to `0.0.0`
 
 The Git branch name is derived from the command `git rev-parse --abbrev-ref HEAD`. If no branch can be
 found, `<unknown branch>` is set as the default value.
