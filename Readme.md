@@ -206,5 +206,5 @@ Personal Note
 -------------
 This is the first Gradle plugin I developed. Please forgive any non-ideomatic or inefficient approaches or code
 sections.
-Tests / FunctionalTests are still missing
+Tests / FunctionalTests are still missing.
 Any constructive feedback will be much appreciated.
