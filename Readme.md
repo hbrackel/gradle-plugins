@@ -7,7 +7,7 @@ Description
 This plugin helps automating the project versioning in a CI/CD environment by
 combining the latest Git tag with a CI/CD build number for composing the project version number.
 Together with additional configurable properties the version components can be persisted
-in the `gitVersionProperties/version.properties` file in the project build directory, as defined by the implicitly
+in a `gitVersionProperties/version.properties` file in the project `build` directory, as defined by the implicitly
 applied Gradle `base` plugin.
 
 The project is assumed to use [Semantic Versioning](https://semver.org), but other schemes are possible as well.
@@ -38,11 +38,11 @@ notes below).
 `versionMajor`, `versionMinor`, `versionPatch`, and the Git `sha` are derived from the result of the
 command `git describe --tags --long --always`.
 
-If the latest Git tag contains a dot (`<first part>.<second minor>`), the tag String is split around the first dot,
-where the first part is taken as the `MAJOR`version component and the second part comprises the "MINOR" version
+If the latest Git tag contains a dot (`<first part>.<second minor>`), the tag string is split around the first dot,
+where the first part is taken as the `MAJOR`version component and the second part comprises the `MINOR` version
 component.
 `PATCH` is calculated from the number of commits since the last tag.
-The priciples of semantic versioning are fulfilled when tags for formatted using number like `2.3`.
+The principles of semantic versioning are fulfilled when tags are formatted using numbers like `2.3`.
 
 If no tag can be found, `MAJOR.MINOR.PATCH` defaults to `0.0.0`
 
