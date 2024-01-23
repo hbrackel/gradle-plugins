@@ -44,7 +44,7 @@ internal fun gitDescribe(): Triple<String, String, String> =
         }.orElse(Triple("0.0", "0", ""))
 
 internal fun gitBranch(): String =
-    execShellCommand("git", "rev-parse", "--abbrev-ref", "HEAD").map {
+    execShellCommand("git", "branch", "--show-current").map {
         it.first().trim()
     }.orElse("<unknown branch>")
 

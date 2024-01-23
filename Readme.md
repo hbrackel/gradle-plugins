@@ -35,6 +35,8 @@ notes below).
 
 **Git**
 
+This plugin expects git 2.22 or later be installed on the system.
+
 `versionMajor`, `versionMinor`, `versionPatch`, and the Git `sha` are derived from the result of the
 command `git describe --tags --long --always`.
 
