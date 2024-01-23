@@ -46,7 +46,7 @@ The principles of semantic versioning are fulfilled when tags are formatted usin
 
 If no tag can be found, `MAJOR.MINOR.PATCH` defaults to `0.0.0`
 
-The Git branch name is derived from the command `git rev-parse --abbrev-ref HEAD`. If no branch can be
+The Git branch name is derived from the command `git branch --show-current`. If no branch can be
 found, `<unknown branch>` is set as the default value.
 
 In a CI/CD multi-branch configuration the version will be postfixed with `".SNAPSHOT.${buildDate.toEpochSecond()}"` for
@@ -65,7 +65,7 @@ Gradle `base` plugin and inherits its related tasks.
 
 ```kotlin
 plugins {
-    id("de.macnix.gradle.git-version-properties")
+    id("de.macnix.gradle.git-version-properties") version "1.1.0"
 }
 ```
 
@@ -90,7 +90,7 @@ _Example: Difference between configuration and execution properties_
 
 ```
 plugins {
-    id("de.macnix.gradle.git-version-properties") version "1.0.0"
+    id("de.macnix.gradle.git-version-properties") version "1.1.0"
 }
 
 // [...]
